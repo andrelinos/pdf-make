@@ -1,9 +1,9 @@
 import './App.css';
 
 import { PdfMake } from './components/pdfmake';
-import Tabela from './components/tabela';
-import Tabela2 from './components/tabela2';
-import TabelaMes from './components/tabelames';
+// import Tabela from './components/tabela';
+// import Tabela2 from './components/tabela2';
+// import TabelaMes from './components/tabelames';
 import { Xls } from './components/xlsx';
 
 interface ListProps {
