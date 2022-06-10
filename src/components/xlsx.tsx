@@ -1,6 +1,26 @@
+import { useEffect, useState } from 'react';
 import * as XLSX from 'xlsx';
 
 export function Xls() {
+    const [dados, setDados] = useState([]);
+
+    useEffect(() => {
+        async function loadData() {
+            const url = 'https://sheetjs.com/executive.json';
+            const raw_data = await (await fetch(url)).json();
+
+            /* filter for the Presidents */
+            const prez = raw_data.filter((row: { terms: any[] }) =>
+                row.terms.some(
+                    (term: { type: string }) => term.type === 'prez',
+                ),
+            );
+
+            setDados(prez);
+        }
+        loadData();
+    }, []);
+
     async function handleExportXls() {
         const url = 'https://sheetjs.com/executive.json';
         const raw_data = await (await fetch(url)).json();
@@ -9,6 +29,8 @@ export function Xls() {
         const prez = raw_data.filter((row: { terms: any[] }) =>
             row.terms.some((term: { type: string }) => term.type === 'prez'),
         );
+
+        setDados(prez);
 
         /* flatten objects */
         const rows = prez.map(
@@ -59,9 +81,39 @@ export function Xls() {
     }
 
     return (
-        <div className="flex w-full justify-center">
+        <div className="flex w-full justify-center flex-col">
+            <table>
+                <tr className="text-center border-[2px] bg-slate-600 text-white">
+                    <th className="text-center border-[2px] ">id</th>
+                    <th className="text-center border-[2px] ">Nome</th>
+                    <th className="text-center border-[2px] ">Nascimento</th>
+                    <th className="text-center border-[2px] ">Sexo</th>
+                    <th className="text-center border-[2px] ">Início</th>
+                    <th className="text-center border-[2px] ">Fim</th>
+                </tr>
+
+                {dados?.map((item) => (
+                    <tr className="text-center border-[2px] ">
+                        <td className="text-center border-[2px] ">
+                            {item.name.first}
+                        </td>
+                        <td className="text-center border-[2px] ">
+                            {item.bio.birthday}
+                        </td>
+                        <td className="text-center border-[2px] ">
+                            {item.bio.gender}
+                        </td>
+                        <td className="text-center border-[2px] ">
+                            {item.terms[0].start}
+                        </td>
+                        <td className="text-center border-[2px] ">
+                            {item.terms[0].end}
+                        </td>
+                    </tr>
+                ))}
+            </table>
             <button
-                className="w-64 h-10 bg-blue-500 text-white"
+                className="w-64 h-12 rounded-md bg-blue-500 text-white my-4 mx-auto"
                 onClick={handleExportXls}
             >
                 Exportar XLSX
