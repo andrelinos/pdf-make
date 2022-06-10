@@ -98,7 +98,7 @@ export function Xls() {
                             {item.id.govtrack}
                         </td>
                         <td className="text-center border-[2px] ">
-                            {item.name.first}
+                            {item.name.first} {item.name.last}
                         </td>
                         <td className="text-center border-[2px] ">
                             {item.bio.birthday}
