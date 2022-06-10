@@ -24,14 +24,16 @@ interface reportTitleProps {
 
 function App() {
     return (
-        <>
+        <div className="flex flex-col items-center">
             {/* <Tabela2 />
             <Tabela /> */}
             {/* <TabelaMes /> */}
             <PdfMake />
-            <h1>Não tem nada a ver com os dados acima</h1>
+            <h1 className="py-5 font-bold text-center">
+                Não tem nada a ver com os dados acima
+            </h1>
             <Xls />
-        </>
+        </div>
     );
 }
 
