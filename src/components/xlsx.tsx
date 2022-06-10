@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import * as XLSX from 'xlsx';
 
 export function Xls() {
-    const [dados, setDados] = useState([]);
+    const [dados, setDados] = useState([] as any);
 
     useEffect(() => {
         async function loadData() {
@@ -92,8 +92,11 @@ export function Xls() {
                     <th className="text-center border-[2px] ">Fim</th>
                 </tr>
 
-                {dados?.map((item) => (
+                {dados?.map((item: any) => (
                     <tr className="text-center border-[2px] ">
+                        <td className="text-center border-[2px] ">
+                            {item.id.govtrack}
+                        </td>
                         <td className="text-center border-[2px] ">
                             {item.name.first}
                         </td>
