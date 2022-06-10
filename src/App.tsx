@@ -1,5 +1,10 @@
 import './App.css';
+
 import { PdfMake } from './components/pdfmake';
+import Tabela from './components/tabela';
+import Tabela2 from './components/tabela2';
+import TabelaMes from './components/tabelames';
+import { Xls } from './components/xlsx';
 
 interface ListProps {
     name: string;
@@ -18,7 +23,16 @@ interface reportTitleProps {
 [];
 
 function App() {
-    return <PdfMake />;
+    return (
+        <>
+            {/* <Tabela2 />
+            <Tabela /> */}
+            {/* <TabelaMes /> */}
+            <PdfMake />
+            <h1>Não tem nada a ver com os dados acima</h1>
+            <Xls />
+        </>
+    );
 }
 
 export default App;
